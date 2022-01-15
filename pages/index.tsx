@@ -41,7 +41,7 @@ const HomePage = () => {
 
   async function startFishing(): Promise<void> {
     if (signer) {
-      const generateSeconds: number = randomIntFromInterval(0, 0);
+      const generateSeconds: number = randomIntFromInterval(0, 30);
       setIsOpenFishingModal(true);
       setTimeout(() => {
         const fishDetail: IFish = getRandomFishData(walletAddress);
