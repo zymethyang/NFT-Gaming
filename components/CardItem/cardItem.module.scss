@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+
+  &:not(:last-child) {
+    border-bottom: solid 1px gray;
+  }
+
+  .order {
+    min-width: 50px;
+  }
+
+  .name {
+    min-width: 100px;
+  }
+
+  .imageWrapper {
+    display: flex;
+    justify-content: center;
+    min-width: 130px;
+  }
+
+  .fishedBy {
+    min-width: 200px;
+  }
+
+  .destroyButton {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  
+  .changeOwner {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}

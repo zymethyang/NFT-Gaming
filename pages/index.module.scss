@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  .layout {
+    padding: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    max-width: 1000px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 12px;
+
+    .walletStatus {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .fishingButton {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      min-width: 300px;
+    }
+
+    .fishWrapper {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
+      border-radius: 24px;
+      border: solid 1px gray;
+    }
+  }
+}
