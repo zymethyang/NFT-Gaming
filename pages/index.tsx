@@ -97,7 +97,7 @@ const HomePage = () => {
           )}
         </button>
         <div className={styles.walletStatus}>{status}</div>
-        <div>{`Your player ID: ${contractAddress}`}</div>
+        <div>{`Your player ID (Backup your ID): ${contractAddress}`}</div>
         {!contractAddress && (
           <button onClick={() => createContractAddress(setContractAddress)}>
             Get Player ID
