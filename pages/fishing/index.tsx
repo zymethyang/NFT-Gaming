@@ -1,22 +1,22 @@
 import { ReactNode, useEffect, useState } from "react";
-import { getRandomFishData } from "../constants";
-import { LocalStorageKeys } from "../enum";
-import { useOwner, useSigner } from "../hooks";
-import { IFish } from "../interfaces";
-import { connectWallet, getCurrentWalletConnected } from "../utils";
+import { getRandomFishData } from "../../constants";
+import { LocalStorageKeys } from "../../enum";
+import { useOwner, useSigner } from "../../hooks";
+import { IFish } from "../../interfaces";
+import { connectWallet, getCurrentWalletConnected } from "../../utils";
 import {
   changeItemOwner,
   createAward,
   createContractAddress,
   destroyItem,
-} from "../utils/nft";
-import { randomIntFromInterval } from "../utils/number";
-import CardItem from "../components/CardItem";
-import FishingModal from "../components/FishingModal";
+} from "../../utils/nft";
+import { randomIntFromInterval } from "../../utils/number";
+import CardItem from "../../components/CardItem";
+import FishingModal from "../../components/FishingModal";
 import { Button } from "reactstrap";
-import styles from "./index.module.scss";
+import styles from "./fishing.module.scss";
 
-const HomePage = () => {
+const FishingPage = () => {
   const [contractAddress, setContractAddress] = useState<string>("");
   const [walletAddress, setWallet] = useState<string>("");
   const [totalFish, setTotalFish] = useState<IFish[]>([]);
@@ -25,7 +25,7 @@ const HomePage = () => {
 
   const { signer } = useSigner();
 
-  useOwner(setTotalFish, contractAddress);
+  useOwner(setTotalFish, contractAddress, walletAddress);
 
   async function onPressConnectWallet(): Promise<void> {
     const walletResponse = await connectWallet();
@@ -62,12 +62,7 @@ const HomePage = () => {
     if (signer) {
       const toWallet = prompt("Input receiver wallet");
       if (toWallet) {
-        await changeItemOwner(
-          contractAddress,
-          signer,
-          toWallet,
-          order
-        );
+        await changeItemOwner(contractAddress, signer, toWallet, order);
       }
     }
   }
@@ -128,4 +123,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default FishingPage;

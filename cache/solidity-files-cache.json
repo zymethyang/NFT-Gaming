@@ -554,6 +554,41 @@
       "artifacts": [
         "IERC721Enumerable"
       ]
+    },
+    "/home/tringuyen/Desktop/Blockchain/next-capstone-project/contracts/Diamond.sol": {
+      "lastModificationDate": 1642615552661,
+      "contentHash": "b409b2a3289774289d3c2313ca0cd079",
+      "sourceName": "contracts/Diamond.sol",
+      "solcConfig": {
+        "version": "0.8.0",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Diamond"
+      ]
     }
   }
 }

@@ -1,8 +1,10 @@
+import axios from "axios";
 import { ethers, ContractFactory } from "ethers";
 import { getCapstoneContract } from "./contract";
 import { getSigner } from "../utils/contract";
 import { LocalStorageKeys } from "../enum";
-import { IFish } from "../interfaces";
+import { IBlock, IFish } from "../interfaces";
+import { REACT_APP_ETHERSCAN_API, REACT_APP_ETHERSCAN_URL } from "../config";
 
 export async function createContractAddress(
   setContractAddress: (contractAddress: string) => void
@@ -38,6 +40,7 @@ export async function createAward(
 export async function getOwnerItems(
   setTotalFish: (totalFish: IFish[]) => void,
   contractAddress: string,
+  walletAddress: string,
   signer: ethers.providers.JsonRpcSigner
 ): Promise<void> {
   const contract = getCapstoneContract();
@@ -46,12 +49,14 @@ export async function getOwnerItems(
     contract.abi,
     signer
   );
-  const balanceOf = await getBalanceOf(contractAddress, signer);
+
+  const blocks: IBlock[] = await getOwnerBlocks(contractAddress, walletAddress);
   const totalFish: IFish[] = await Promise.all(
-    Array.from({ length: balanceOf }).map(async (_, index: number) => {
-      return JSON.parse(await capstoneContract.tokenURI(index + 1));
+    blocks.map(async (block: IBlock, index: number) => {
+      return JSON.parse(await capstoneContract.tokenURI(Number(block.tokenID)));
     })
   );
+
   setTotalFish(totalFish);
 }
 
@@ -103,4 +108,32 @@ export async function changeItemOwner(
     );
     await capstoneContract.changeItemOwner(to, tokenId);
   }
+}
+
+export async function getOwnerBlocks(
+  contractAddress: string,
+  walletAddress: string
+): Promise<IBlock[]> {
+  if (!walletAddress) {
+    return [];
+  }
+
+  const tokenResponse = await axios.get(REACT_APP_ETHERSCAN_URL, {
+    params: {
+      module: "account",
+      action: "tokennfttx",
+      address: walletAddress,
+      startblock: 0,
+      endblock: "latest",
+      sort: "asc",
+      apikey: REACT_APP_ETHERSCAN_API,
+    },
+  });
+
+  const filteredBlocks = tokenResponse?.data?.result?.filter(
+    (block: IBlock) =>
+      block.contractAddress?.toUpperCase() === contractAddress?.toUpperCase()
+  );
+
+  return filteredBlocks;
 }

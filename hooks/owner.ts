@@ -5,21 +5,22 @@ import { getOwnerItems } from "../utils/nft";
 
 export function useOwner(
   setTotalFish: (totalFish: IFish[]) => void,
-  contractAddress: string
+  contractAddress: string,
+  walletAddress: string
 ) {
   const { signer } = useSigner();
 
   useEffect(() => {
     let timerId: NodeJS.Timeout;
-    
+
     try {
-      if (contractAddress && signer) {
-        getOwnerItems(setTotalFish, contractAddress, signer);
+      if (contractAddress && signer && walletAddress) {
+        getOwnerItems(setTotalFish, contractAddress, walletAddress, signer);
       }
 
       setInterval(() => {
-        if (contractAddress && signer) {
-          getOwnerItems(setTotalFish, contractAddress, signer);
+        if (contractAddress && signer && walletAddress) {
+          getOwnerItems(setTotalFish, contractAddress, walletAddress, signer);
         }
       }, 5000);
     } catch (error) {
@@ -29,5 +30,5 @@ export function useOwner(
     return () => {
       clearInterval(timerId);
     };
-  }, [contractAddress, signer]);
+  }, [contractAddress, walletAddress, signer]);
 }

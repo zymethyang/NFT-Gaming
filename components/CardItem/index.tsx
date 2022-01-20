@@ -22,8 +22,12 @@ const CardItem = (props: ICardItemProps) => {
         )}
       </div>
       <div>{fish?.fishedBy}</div>
-      <button className={styles.destroyButton} onClick={onClear}>Destroy</button>
-      <button className={styles.changeOwner} onClick={onChangeOwner}>Change owner</button>
+      <button className={styles.destroyButton} onClick={onClear}>
+        Destroy
+      </button>
+      <button className={styles.changeOwner} onClick={onChangeOwner}>
+        Change owner
+      </button>
     </div>
   );
 };

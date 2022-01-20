@@ -6,6 +6,11 @@ export function getCapstoneContract() {
   return contract;
 }
 
+export function getDiamondContract() {
+  const contract = require("../artifacts/contracts/Diamond.sol/Diamond.json");
+  return contract;
+}
+
 export function getSigner(): ethers.providers.JsonRpcSigner {
   const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
   const signer = provider.getSigner();
