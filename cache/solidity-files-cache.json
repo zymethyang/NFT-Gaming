@@ -556,8 +556,8 @@
       ]
     },
     "/home/tringuyen/Desktop/Blockchain/next-capstone-project/contracts/Diamond.sol": {
-      "lastModificationDate": 1642615552661,
-      "contentHash": "b409b2a3289774289d3c2313ca0cd079",
+      "lastModificationDate": 1642661482334,
+      "contentHash": "1c42c8749e83257f0ca0cee4f784d284",
       "sourceName": "contracts/Diamond.sol",
       "solcConfig": {
         "version": "0.8.0",

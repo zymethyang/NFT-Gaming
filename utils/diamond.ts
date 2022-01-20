@@ -83,9 +83,9 @@ export async function getDiamonds(
   const contract = getDiamondContract();
 
   const diamondIds: string[] = [
-    "0x2ba6D85A6bD931114A6756baa630639e46D67C02",
-    "0xC03D13b5126049a0aadfe05f88EF9a661715CC38",
-    "0xe6F23d137E824e3F5c09DD9040E9AE5575eC40d3",
+    "0xbad19E864cF8a4499cD289c3728CA1057bD64030",
+    "0x5A10F0579D17039a3518D2F9e872BA436696E109",
+    "0x8D58f9E80cDF3759Cc8B9dE56Ce5a512F963E6A5",
   ];
 
   try {

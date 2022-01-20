@@ -43,6 +43,11 @@ contract Diamond {
         });
     }
 
+    /**
+    * @dev Emitted when `owner` contract change `price`.
+    */
+    event UpdateHistory(address indexed owner, uint indexed price);
+
     function deposit() public payable {}
 
     function notPayable() public {}
@@ -62,6 +67,7 @@ contract Diamond {
     {
         histories.push(History({ownerAddress: ownerAddress, price: price}));
         currentPrice = price;
+        emit UpdateHistory(msg.sender, price);
     }
 
     function createPaidReceipt() private {
